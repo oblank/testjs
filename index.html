@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test ajax and push state</title>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+    <ul>
+        <li><a data-id="1" href="javascript:;">访问1</a></li>
+        <li><a data-id="2" href="javascript:;">访问2</a></li>
+        <li><a data-id="3" href="javascript:;">访问3</a></li>
+        <li><a data-id="4" href="javascript:;">访问4</a></li>
+        <li><a data-id="5" href="javascript:;">访问5</a></li>
+    </ul>
+    <!--http://tpapi.tuishiben.com/groups_encrypt/services/rest/test/output?item_id=1-->
+
+    <div id="content">
+        ID: <span id="_id"></span><br>
+        DATE: <span id="date"></span><br>
+        TIME: <span id="time"></span><br>
+    </div>
+
+<script type="text/javascript">
+    //historyState对象，提供push历史数据和获取历史数据方法。
+    //linkFly原创，引用请注明出处，谢谢
+    var historyState = {
+        checkCanPush: function () {
+            /// <summary>
+            ///     检测浏览器是否支持pushState方法
+            /// </summary>
+            /// <returns type="Boolean" />
+            if (window.history.pushState)
+                return true;
+
+            return false;
+        },
+        pushState: function (data, url) {
+            /// <summary>
+            ///     状态保持方法（需要高版本浏览器支持），当canPush为true的时候表示浏览器可以进行push状态，则进行状态push并返回是否成功
+            ///     &#10;   1.1 - pushState(data,url) 将指定的data,和url push到浏览器会话历史进行状态保持【注意Url不允许跨域】
+            /// </summary>
+            /// <param name="url" type="String">
+            ///     需要写入浏览器会话历史的url
+            /// </param>
+            /// <returns type="Boolean" />
+            if (historyState.checkCanPush()) {
+                //注意data虽然可以保存数据，但是不能保存仍然引用着当前页面元素的对象，例如$("DOM")这样一个对象，就会出现ObjectCloneError
+                window.history.pushState(data, document.title, url);
+                return true;
+            }
+            return false;
+        },
+        getUrlParameter: function (fieldName) {
+            /// <summary>
+            ///     1: 获取地址栏参数方法
+            ///     &#10;    - getUrlParameter(fieldName) - 在当前Url中查询指定的参数，返回查询得到的值，当不支持pushState或没有查询到参数的时候返回空字符串
+            /// </summary>
+            /// <param name="fieldName" type="String">
+            ///     要查询的字符串
+            /// </param>
+            /// <returns type="String" />
+            if (historyState.checkCanPush()) {
+                var urlString = document.location.search;
+                if (urlString != null) {
+                    var typeQu = fieldName + "=";
+                    var urlEnd = urlString.indexOf(typeQu);
+                    if (urlEnd != -1) {
+                        var paramsUrl = urlString.substring(urlEnd + typeQu.length);
+                        var isEnd = paramsUrl.indexOf('&');
+                        if (isEnd != -1) {
+                            return paramsUrl.substring(0, isEnd);
+                        }
+                        else {
+                            return paramsUrl;
+                        }
+                    }
+                    else {
+                        return "";
+                    }
+                }
+                else {
+                    return "";
+                }
+            } else {
+                return '';
+            }
+        }
+    }
+
+    var url = {
+        getUrlParameter: function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        }
+    }
+
+
+
+    $("li a").click(function(){
+        _this = $(this);
+        item_id = _this.attr("data-id");
+        actionWithId(item_id, false)
+    });
+
+    window.addEventListener('popstate', function(e){
+        if (history.state){
+            console.log("popstate:" + e.state );
+            var state = e.state; //do something(state.url, state.title);
+            actionWithId(e.state.item_id, true);
+        }
+    }, false);
+
+
+    function actionWithId(item_id, isHistory) {
+        // if isHistory is set, maybe you want to tell server with header
+        // such as: setRequestHeader('HISTORY-CALL', 'true')。
+        url = "http://tpapi.tuishiben.com/groups_encrypt/services/rest/test/output?callback=callback&item_id=" + item_id;
+        $.ajax({
+            url: url,
+            jsonp: "callback",
+            dataType: "jsonp",
+            success: function( data ) {
+                $("#_id").html(item_id);
+                $("#date").html(data.date);
+                $("#time").html(data.time);
+                if (!isHistory) {
+                    historyState.pushState({ item_id: item_id }, window.location.pathname + '?item_id=' + item_id);
+
+                }
+                console.log(data);
+            }
+        });
+    }
+
+//    window.onload = function () {
+//        //写入历史会话
+//        historyState.pushState({ pageIndex: 1 }, window.location.pathname + '?item_id=1');
+//        //获取历史会话的数据（获取url的参数数据）
+//        var pageIndex = historyState.getUrlParameter('pageIndex'); //进行数据还原操作..
+//    }
+
+    $(function(){
+        //通过jQuery.trigger()方法触发 //或者自己手写js触发，具体代码这里就不贴了...
+        $(window).trigger("hashchange");
+
+        item_id = url.getUrlParameter("item_id");
+        actionWithId(item_id, false);
+    });
+
+</script>
+
+</body>
+</html>
