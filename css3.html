@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS3</title>
+</head>
+<body>
+
+<style type="text/css">
+    div {
+        margin:0 auto;
+    }
+
+</style>
+
+<div>
+    <picture>
+        <source media="(min-width: 650px)" srcset="http://googlechrome.github.io/samples/picture-element/images/kitten-large.png">
+        <source media="(min-width: 465px)" srcset="http://googlechrome.github.io/samples/picture-element/images/kitten-medium.png">
+        <!-- img tag for browsers that do not support picture element -->
+        <img src="http://googlechrome.github.io/samples/picture-element/images/kitten-small.png" alt="a cute kitten">
+    </picture>
+
+    <br/><br/>
+
+    <!--safari not support-->
+    <picture>
+        <source media="(min-width: 800px)" srcset="https://handliberation.com/wp-content/uploads/2015/12/Pretty-e1449544664524.jpg">
+        <source media="(max-width: 800px) and (min-width:600px)" srcset="imgs/image-800px.jpg">
+        <source media="(min-width: 599px)" srcset="imgs/image-600px.jpg">
+        <img src="imgs/image-600px.jpg" alt="">
+        <p>Accessible text</p>
+    </picture>
+
+
+
+
+
+</div>
+
+</body>
+</html>
