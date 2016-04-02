@@ -1,0 +1,364 @@
+<!DOCTYPE html5>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:600,300" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="https://connoratherton.com/assets/css/vendor/loaders.css.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://connoratherton.com/assets/css/loaders.css"/>
+    <style type="text/css">
+        /* line 5, stdin */
+        html,
+        body {
+            height: 100%;
+            font-size: 16px;
+            background: #ed5565;
+            color: #fff;
+            font-family: 'Source Sans Pro'; }
+
+        /* line 14, stdin */
+        h1 {
+            font-size: 2.8em;
+            font-weight: 700;
+            letter-spacing: -1px;
+            margin: 0.6rem 0; }
+        /* line 20, stdin */
+        h1 > span {
+            font-weight: 300; }
+
+        /* line 25, stdin */
+        h2 {
+            font-size: 1.15em;
+            font-weight: 300;
+            margin: 0.3rem 0; }
+
+        /* line 31, stdin */
+        main {
+            width: 95%;
+            max-width: 1000px;
+            margin: 4em auto;
+            opacity: 0; }
+        /* line 37, stdin */
+        main.loaded {
+            transition: opacity .25s linear;
+            opacity: 1; }
+        /* line 42, stdin */
+        main header {
+            width: 100%; }
+        /* line 47, stdin */
+        main header > div {
+            width: 50%; }
+        /* line 51, stdin */
+        main header > .left,
+        main header > .right {
+            height: 100%; }
+        /* line 58, stdin */
+        main .loaders {
+            width: 100%;
+            box-sizing: border-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex: 0 1 auto;
+            -ms-flex: 0 1 auto;
+            flex: 0 1 auto;
+            -webkit-flex-direction: row;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap; }
+        /* line 66, stdin */
+        main .loaders .loader {
+            box-sizing: border-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex: 0 1 auto;
+            -ms-flex: 0 1 auto;
+            flex: 0 1 auto;
+            -webkit-flex-direction: column;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-flex-grow: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            -webkit-flex-shrink: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            -webkit-flex-basis: 25%;
+            -ms-flex-preferred-size: 25%;
+            flex-basis: 25%;
+            max-width: 25%;
+            height: 200px;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center; }
+
+        /**
+         * Util classes
+         */
+        /* line 86, stdin */
+        .left {
+            float: left; }
+
+        /* line 90, stdin */
+        .right {
+            float: right; }
+
+        /* line 94, stdin */
+        .cf, main header {
+            content: "";
+            display: table;
+            clear: both; }
+
+        /**
+         * Buttons
+         */
+        /* line 104, stdin */
+        .btn {
+            color: #fff;
+            padding: .75rem 1.25rem;
+            border: 2px solid #fff;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: -webkit-transform .1s ease-out, border .1s ease-out, background-color .15s ease-out, color .1s ease-out;
+            transition: transform .1s ease-out, border .1s ease-out, background-color .15s ease-out, color .1s ease-out;
+            margin: 2rem 0; }
+        /* line 113, stdin */
+        .btn:hover {
+            -webkit-transform: scale(1.01562);
+            transform: scale(1.01562);
+            background-color: #fff;
+            color: #ed5565; }
+    </style>
+
+    </head>
+<body>
+<main>
+    <header>
+        <div class="left">
+            <h1>Loaders<span>.css</span></h1>
+            <h2>Delightful and performance-focused pure css loading animations.</h2>
+        </div>
+        <div class="right"><a href="https://github.com/ConnorAtherton/loaders.css" class="btn right">View on Github</a></div>
+    </header>
+    <div class="loaders">
+        <div class="loader">
+            <div class="loader-inner triangle-skew-spin">
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner pacman">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-grid-beat">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner semi-circle-spin">
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-pulse">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-grid-pulse">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-clip-rotate">
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-clip-rotate-pulse">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner square-spin">
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-clip-rotate-multiple">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-pulse-rise">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-rotate">
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner cube-transition">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-zig-zag">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-zig-zag-deflect">
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-triangle-path">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-scale">
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner line-scale">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner line-scale-party">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-scale-multiple">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-pulse-sync">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-beat">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner line-scale-pulse-out">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner line-scale-pulse-out-rapid">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-scale-ripple">
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-scale-ripple-multiple">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner ball-spin-fade-loader">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="loader">
+            <div class="loader-inner line-spin-fade-loader">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+
+    </div>
+</main>
+<script>document.addEventListener('DOMContentLoaded', function () {
+    document.querySelector('main').className += 'loaded';
+});
+</script>
+</body>
