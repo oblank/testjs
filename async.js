@@ -36,12 +36,12 @@ class Test {
         });
 
         let tmp_values;
-        await Promise.all([this.connectDB(22), this.connectDB(23)]).then((values) => {
-            tmp_values = values;
-            console.log(values);
-        });
+        let values = tmp_values = await Promise.all([this.connectDB(22), this.connectDB(23)]);
+        //.then(value => {
+        //    tmp_values = 1;
+        //})
 
-        console.log(`getDatas ret: ${value}`);
+        console.log(`getDatas ret: ${values}`);
 
         return tmp_values;
     }
@@ -65,7 +65,6 @@ class Test {
 
 let test = new Test();
 let call = test.calculate('hello world 2', 50);
-console.log(call);
 call.then(ret => {
     console.log(`last ret:${ret}`);
 })
