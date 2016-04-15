@@ -35,20 +35,42 @@ class Test {
             console.log(value);
         });
 
-        var ret = await Promise.all([this.connectDB(22), this.connectDB(23)]).then((values) => {
+        let tmp_values;
+        await Promise.all([this.connectDB(22), this.connectDB(23)]).then((values) => {
+            tmp_values = values;
             console.log(values);
         });
 
-        console.log(`ret: ${value}`);
+        console.log(`getDatas ret: ${value}`);
 
-        return values;
+        return tmp_values;
+    }
+
+    async calculate(value, ms) {
+        //return new Promise((resolve, reject) => {
+        //    resolve('new Promise');
+        //})
+
+        return this.getDatas(value, ms);
+        //
+        //return this.getDatas(value, ms).then(ret => {
+        //    return ret;
+        //    return `from calculate call ret:${ret}`;
+        //});
+
+        return 'null 2';
     }
 
 }
 
 let test = new Test();
-test.getDatas('hello world', 50).then(ret => {
-    console.log(ret);
+let call = test.calculate('hello world 2', 50);
+console.log(call);
+call.then(ret => {
+    console.log(`last ret:${ret}`);
+})
+.catch(err => {
+    console.log(err);
 });
 console.log('line 41')
 
