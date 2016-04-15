@@ -8,36 +8,48 @@
  * @param ms
  * @returns {Promise}
  */
-function timeout(ms) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            //console.log(`01: ${ms}`);
-            resolve(`success ${ms}`);
-        }, ms);
-        console.log(`02: ${ms}`);
-    });
+
+class Test {
+
+
+    connectDB(ms) {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                //console.log(`01: ${ms}`);
+                resolve(`success ${ms}`);
+            }, ms);
+            console.log(`02: ${ms}`);
+        });
+    }
+
+    async getDatas(value, ms) {
+        let t1 = this.connectDB(50);
+        let t2 = this.connectDB(20);
+
+        await t1.then((value) => {
+            console.log('step 1');
+            console.log(value);
+        });
+        await t2.then((value) => {
+            console.log('step 2');
+            console.log(value);
+        });
+
+        var ret = await Promise.all([this.connectDB(22), this.connectDB(23)]).then((values) => {
+            console.log(values);
+        });
+
+        console.log(`ret: ${value}`);
+
+        return values;
+    }
+
 }
 
-async function asyncPrint(value, ms) {
-    let t1 = timeout(50);
-    let t2 = timeout(20);
-
-    await t1.then((value) => {
-        console.log(value);
-    });
-    await t2.then((value) => {
-        console.log(value);
-    });
-    //var ret = await Promise.all([timeout(22), timeout(23)]).then((value) => {
-    //    console.log(value);
-    //});
-    console.log(`ret`);
-
-
-    console.log(value)
-}
-
-asyncPrint('hello world', 50);
+let test = new Test();
+test.getDatas('hello world', 50).then(ret => {
+    console.log(ret);
+});
 console.log('line 41')
 
 //
